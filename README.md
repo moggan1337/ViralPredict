@@ -1,337 +1,158 @@
 # ViralPredict
 
-<p align="center">
-  <img src="https://img.shields.io/badge/ML-Prediction-FF6B6B?style=for-the-badge&logo=tensorflow&logoColor=white" alt="ML">
-  <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/FastAPI-0.104-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
-  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
-  <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge" alt="PRs Welcome">
-</p>
+ML model for predicting social media content viral potential.
 
-> 🔮 **Viral Potential Predictor** — ML-powered prediction engine forecasting the viral potential of social media content before posting. 85%+ accuracy on engagement forecasting.
+## Overview
 
-## About
-
-ViralPredict uses state-of-the-art deep learning models to analyze content and predict its potential to go viral. By examining text, images, hashtags, timing, and audience fit, it provides creators and marketers with actionable insights to maximize engagement before investing time in content creation.
-
-**Who it's for:**
-- Content creators seeking to maximize reach and engagement
-- Social media managers optimizing posting strategy
-- Marketing teams planning campaigns
-- Brands wanting data-driven content decisions
+ViralPredict uses machine learning to predict whether social media content will go viral based on engagement metrics, user profile data, and content features.
 
 ## Features
 
-### Prediction Engine
-
-| Feature | Description |
-|---------|-------------|
-| 🧠 **Neural Networks** | LSTM + Transformer ensemble for sequence and content modeling |
-| 📊 **Engagement Forecasting** | Predict views, likes, shares, and comments |
-| 🎯 **Viral Score** | 0-100 composite score indicating viral potential |
-| 📈 **Trend Analysis** | Real-time trend impact assessment on virality |
-| 👥 **Audience Fit** | Content-to-audience match scoring |
-
-### Content Analysis
-
-| Feature | Description |
-|---------|-------------|
-| 📝 **Text Analysis** | Headline, caption, and copy scoring |
-| 🖼️ **Image Analysis** | Visual appeal and uniqueness scoring |
-| 🎬 **Video Analysis** | Thumbnail, duration, and pacing analysis |
-| 🏷️ **Hashtag Analysis** | Competition level, relevance, and trend alignment |
-
-### Dashboard & Tools
-
-| Feature | Description |
-|---------|-------------|
-| 📊 **Post Analytics** | Historical performance analysis and trends |
-| 📱 **Mobile Companion** | iOS/Android app for on-the-go predictions |
-| 🔔 **Smart Alerts** | Notifications for optimal posting windows |
-| 📤 **Export Reports** | PDF and CSV performance reports |
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        ViralPredict System                       │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                   │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │                      Content Input                         │   │
-│  │  ┌────────────────────────────────────────────────────┐  │   │
-│  │  │  Text (caption, headline, body copy)               │  │   │
-│  │  │  Images/Videos (thumbnail, media files)             │  │   │
-│  │  │  Hashtags, mentions                                 │  │   │
-│  │  │  Scheduled post time                               │  │   │
-│  │  │  Platform target                                    │  │   │
-│  │  └────────────────────────────────────────────────────┘  │   │
-│  └──────────────────────────────────────────────────────────┘   │
-│                              │                                   │
-│  ┌────────────────────────────┴──────────────────────────────┐   │
-│  │                   Feature Extraction Layer                  │   │
-│  │  ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────┐  │   │
-│  │  │    NLP    │ │   Vision  │ │   Trend   │ │   Social  │  │   │
-│  │  │ Features  │ │ Features  │ │ Features  │ │ Features  │  │   │
-│  │  │           │ │           │ │           │ │           │  │   │
-│  │  │ • Embeddings│ │• Objects │ │• Trend    │ │• Followers│  │   │
-│  │  │ • Sentiment│ │• Colors │ │  scores   │ │• Past perf│  │   │
-│  │  │ • Keywords │ │• Faces  │ │• Seasonality│ │• Niche   │  │   │
-│  │  └───────────┘ └───────────┘ └───────────┘ └───────────┘  │   │
-│  └──────────────────────────────────────────────────────────┘   │
-│                              │                                   │
-│  ┌────────────────────────────┴──────────────────────────────┐   │
-│  │                      ML Models Layer                        │   │
-│  │  ┌──────────────────────────────────────────────────────┐ │   │
-│  │  │              LSTM + Transformer Ensemble              │ │   │
-│  │  │                                                        │ │   │
-│  │  │  ┌────────────────┐  ┌────────────────┐               │ │   │
-│  │  │  │      LSTM      │  │  Transformer   │               │ │   │
-│  │  │  │  (Temporal)    │  │  (Content)     │               │ │   │
-│  │  │  │                │  │                │               │ │   │
-│  │  │  │ • Sequence     │  │ • Self-attention│              │ │   │
-│  │  │  │   patterns     │  │ • Multi-head   │               │ │   │
-│  │  │  │ • Time-of-day  │  │   attention    │               │ │   │
-│  │  │  │ • Day-of-week  │  │ • Cross-modal  │               │ │   │
-│  │  │  └────────────────┘  └────────────────┘               │ │   │
-│  │  │                                                        │ │   │
-│  │  │  ┌────────────────────────────────────────────────┐  │ │   │
-│  │  │  │     Temporal Fusion Transformer (TFT)         │  │ │   │
-│  │  │  │  • Historical trend impact                     │  │ │   │
-│  │  │  │  • Dynamic covariate handling                  │  │ │   │
-│  │  │  └────────────────────────────────────────────────┘  │ │   │
-│  │  └──────────────────────────────────────────────────────┘ │   │
-│  └──────────────────────────────────────────────────────────┘   │
-│                              │                                   │
-│  ┌────────────────────────────┴──────────────────────────────┐   │
-│  │                    Prediction Output Layer                  │   │
-│  │  ┌────────────────────────────────────────────────────┐  │   │
-│  │  │  • Viral Score (0-100)                             │  │   │
-│  │  │  • Engagement Predictions (views, likes, shares)   │  │   │
-│  │  │  • Improvement Suggestions                          │  │   │
-│  │  │  • Optimal Posting Time                            │  │   │
-│  │  │  • Platform-specific recommendations               │  │   │
-│  │  └────────────────────────────────────────────────────┘  │   │
-│  └──────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|------------|
-| **Language** | Python 3.11+ |
-| **ML Framework** | TensorFlow 2.14, PyTorch 2.1 |
-| **API** | FastAPI 0.104, Pydantic v2 |
-| **Data Processing** | pandas, NumPy, scikit-learn |
-| **NLP** | Transformers (HuggingFace), spaCy |
-| **Vision** | OpenCV, Pillow, CLIP |
-| **Database** | PostgreSQL 15, Redis 7 |
-| **Deployment** | Docker, uvicorn, Gunicorn |
+- **RandomForest Classifier** for robust binary classification
+- **Feature Engineering** including engagement rates, ratio metrics, and temporal patterns
+- **Confidence Scoring** with probability-based predictions
+- **Model Persistence** using joblib for saving/loading trained models
+- **Comprehensive Tests** with pytest
 
 ## Installation
 
-### Prerequisites
-
-- Python 3.11+
-- PostgreSQL 15+ (for metrics storage)
-- Redis 7+ (for caching)
-- 8GB+ RAM recommended (for ML model loading)
-- NVIDIA GPU with CUDA 11.8+ (optional, for faster inference)
-
-### Steps
-
 ```bash
-# Clone the repository
-git clone https://github.com/moggan1337/ViralPredict.git
-cd ViralPredict
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Download pre-trained ML models
-python scripts/download_models.py
-
-# Copy and configure environment
-cp .env.example .env
-# Edit .env with your configuration
-
-# Initialize database
-python scripts/init_db.py
-
-# Start API server
-uvicorn api.main:app --reload
 ```
-
-### Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `DATABASE_URL` | PostgreSQL connection string | ✅ |
-| `REDIS_URL` | Redis connection string | ✅ |
-| `MODEL_PATH` | Path to ML models directory | ✅ |
-| `API_KEY` | API authentication key | Optional |
-| `LOG_LEVEL` | Logging level (DEBUG, INFO, WARNING) | Optional |
 
 ## Quick Start
 
-### Predict Viral Potential
+```python
+from src.model import ViralPredictor
+from src.data import generate_synthetic_data
+from src.predict import predict_virality, get_sample_features
+
+# Generate training data
+X, y = generate_synthetic_data(n_samples=5000, viral_ratio=0.3)
+
+# Create and train model
+model = ViralPredictor()
+metrics = model.train(X.values, y.values)
+
+print(f"Model accuracy: {metrics['accuracy']:.2%}")
+print(f"ROC AUC: {metrics['roc_auc']:.2f}")
+
+# Make predictions
+features = get_sample_features(
+    followers_count=50000,
+    following_count=200,
+    posts_count=1000,
+    content_length=300,
+    has_hashtags=True,
+    hour_of_day=18,
+    day_of_week=5,
+    avg_likes_history=5000
+)
+
+result = predict_virality(features, model=model)
+print(f"Will go viral: {result['will_go_viral']}")
+print(f"Confidence: {result['confidence_score']:.1%}")
+```
+
+## Features
+
+The model uses 18 features:
+
+| Feature | Description |
+|---------|-------------|
+| `followers_count` | Number of followers |
+| `following_count` | Number of accounts followed |
+| `posts_count` | Total posts |
+| `has_profile_picture` | Profile picture present |
+| `has_bio` | Bio present |
+| `account_age_days` | Account age |
+| `content_length` | Length of content |
+| `has_hashtags` | Contains hashtags |
+| `has_mentions` | Contains mentions |
+| `has_url` | Contains URL |
+| `hour_of_day` | Hour posted (0-23) |
+| `day_of_week` | Day of week (0-6) |
+| `is_weekend` | Posted on weekend |
+| `engagement_rate_history` | Historical engagement rate |
+| `avg_likes_history` | Average likes |
+| `avg_comments_history` | Average comments |
+| `follower_to_following_ratio` | Follower/following ratio |
+| `posts_per_day` | Posting frequency |
+
+## API
+
+### ViralPredictor
 
 ```python
-from viralpredict import Predictor
+from src.model import ViralPredictor
 
-# Initialize predictor
-predictor = Predictor()
+# Initialize
+model = ViralPredictor()
 
-# Analyze content
-result = predictor.predict({
-    "text": "5 tips that changed how I code",
-    "image_url": "https://example.com/thumbnail.jpg",
-    "hashtags": ["#coding", "#programming", "#tips"],
-    "platform": "tiktok",
-    "audience_size": 10000,
-    "posting_time": "2024-11-15T18:00:00Z"
-})
+# Train
+metrics = model.train(X, y, test_size=0.2, cv_folds=5)
 
-print(result)
+# Predict single
+result = model.predict_single(features)
+
+# Predict batch
+predictions, probabilities = model.predict(X)
+
+# Save/Load
+model.save_model('model.joblib')
+model = ViralPredictor(model_path='model.joblib')
 ```
 
-### Response Format
-
-```json
-{
-  "viral_score": 78,
-  "confidence": 0.85,
-  "predictions": {
-    "views": 50000,
-    "likes": 2500,
-    "shares": 450,
-    "comments": 180,
-    "engagement_rate": 0.12
-  },
-  "suggestions": [
-    {
-      "category": "hashtag",
-      "message": "Add trending hashtag #learntocode",
-      "expected_boost": "+15% reach"
-    },
-    {
-      "category": "visual",
-      "message": "Use brighter colors in thumbnail",
-      "expected_boost": "+8% click-through"
-    }
-  ],
-  "optimal_post_time": "2024-11-15T12:00:00Z",
-  "analysis": {
-    "text_score": 82,
-    "image_score": 71,
-    "hashtag_score": 65,
-    "timing_score": 88
-  }
-}
-```
-
-### Batch Prediction
+### predict_virality()
 
 ```python
-# Batch process multiple content pieces
-results = predictor.predict_batch([
-    {"text": "Post 1 content...", "platform": "instagram"},
-    {"text": "Post 2 content...", "platform": "twitter"},
-    {"text": "Post 3 content...", "platform": "youtube"}
-])
+from src.predict import predict_virality
+
+result = predict_virality(features, model=model)
+# Returns: {'will_go_viral': bool, 'confidence_score': float, ...}
 ```
 
-## API Reference
-
-### Prediction Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/v1/predict` | Predict viral potential for single content |
-| `POST` | `/api/v1/predict/batch` | Batch prediction for multiple content items |
-| `GET` | `/api/v1/predict/:id` | Get cached prediction result |
-
-### Content Analysis
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/v1/analyze/text` | Analyze text content only |
-| `POST` | `/api/v1/analyze/image` | Analyze image content only |
-| `POST` | `/api/v1/analyze/hashtags` | Analyze hashtag effectiveness |
-
-### Trend Data
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/v1/trends` | Get current trending topics |
-| `GET` | `/api/v1/trends/:platform` | Get platform-specific trends |
-| `GET` | `/api/v1/trends/:hashtag/history` | Get hashtag trend history |
-
-### Historical Performance
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/v1/analytics/overview` | Get performance overview |
-| `GET` | `/api/v1/analytics/:platform` | Get platform-specific analytics |
-
-## Model Details
-
-### LSTM Component
-- Captures temporal patterns in content performance
-- Learns time-of-day and day-of-week effects
-- Memory window: 14 days of historical data
-
-### Transformer Component
-- Self-attention mechanism for content understanding
-- Multi-head attention (8 heads) for diverse feature extraction
-- Cross-modal attention for image-text fusion
-
-### Temporal Fusion Transformer (TFT)
-- Incorporates historical trends into predictions
-- Handles static and dynamic covariates
-- Quantile predictions for uncertainty estimation
-
-## Contributing
-
-We welcome contributions! Please follow these steps:
+## Testing
 
 ```bash
-# Fork the repository
-git clone https://github.com/<your-username>/ViralPredict.git
-
-# Create virtual environment and install
-python -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
-
-# Create feature branch
-git checkout -b feature/amazing-feature
-
-# Make changes, commit, and push
-git commit -m "Add: amazing feature"
-git push origin feature/amazing-feature
+pytest tests/ -v
 ```
 
-### Development Guidelines
+## Data Generation
 
-- Use type hints for all function signatures
-- Follow PEP 8 style guide
-- Write unit tests for new features
-- Update docstrings for API changes
-- Validate models before committing
+```python
+from src.data import generate_synthetic_data, get_balanced_dataset
+
+# Random viral ratio
+X, y = generate_synthetic_data(n_samples=10000, viral_ratio=0.3)
+
+# Balanced dataset
+X, y = get_balanced_dataset(n_samples=5000)
+```
+
+## Model Performance
+
+On synthetic data with clear viral patterns:
+- Accuracy: >85%
+- ROC AUC: >0.90
+- Cross-validation ROC AUC: Consistent across folds
+
+## Files
+
+```
+ViralPredict/
+├── src/
+│   ├── __init__.py
+│   ├── model.py      # ViralPredictor class
+│   ├── predict.py    # Prediction utilities
+│   └── data.py       # Data generation
+├── tests/
+│   ├── __init__.py
+│   └── test_model.py  # Test suite
+├── requirements.txt
+└── README.md
+```
 
 ## License
 
-MIT License — See [LICENSE](LICENSE)
-
-Copyright © 2024 ViralPredict Contributors
-
----
-
-<p align="center">
-  <sub>Predict the next viral sensation before it happens</sub>
-</p>
+MIT License
